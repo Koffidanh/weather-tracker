@@ -1,0 +1,28 @@
+.header {
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.jumbotron {
+  color: white;
+  filter: blue;
+  background-color: black !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  margin-bottom: 0px !important;
+}
+.col-md-4 {
+    background-color:lightcyan;
+    padding-top: 0px;
+}
+#inputCity {
+    width: 80% !important;
+}
+.cityClass {
+    text-align: left;
+    margin-top: 15px;
+    width: 100%;
+    border:1pt tomato;
+   background-color:  white;
+   border:2px black !important;
+}
