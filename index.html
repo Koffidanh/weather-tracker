@@ -31,10 +31,16 @@
                 <h4>Search for a city:</h4>
 
                 <input type="text" class="form-control" id="inputCity" placeholder="Enter City" name="city">
-
                 <button  id="search" type="button" class="btn btn-primary btn-sm" class="glyphicon glyphicon-search">Search</button>
+                <button  id="clear" type="button" class="btn btn-primary btn-sm" class="glyphicon glyphicon-search">Clear</button>
             </div>
-        </div>
+            <div class="col-md-8">
+                <div id="cityName"></div>
+                <div class="temp"></div>
+                <div class="humidity"></div>
+                <div class="wind"></div>
+                <div class="uvIndex"></div>
+            </div>
             <div class="row">
                 <div  class="col-md-4">
                      <div  class="cityClass" id="cityView"></div>
@@ -45,25 +51,15 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                         
                 <div class="col-md-8">
-                    <div id="cityName"></div>
-                    <div class="temp"></div>
-                    <div class="humidity"></div>
-                    <div class="wind"></div>
-                    <div class="uvIndex"></div>
-                    
+                    <div id="forecast"></div>
                 </div>
+    
             </div>
-            
-       
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <div id="forecast"></div>
-            </div>
-
         </div>
+           
+           
+       
     </div>
     <!-- Optional JavaScript -->
     <script src="index.js"></script>
