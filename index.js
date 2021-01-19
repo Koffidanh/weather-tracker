@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //adding the city name into an array
     var cities = [];
-
+    var myKey = config.My_KEY;
     //Function for dispaying city data
     function generatedBtn() {
         //Clear variable
@@ -23,7 +23,7 @@ $(document).ready(function () {
             // Adding the button to the HTML
             $("#cityView").append(cityBtn);
         };
-       
+
     };
     //Setting up search button
     $("#search").click(function (event) {
@@ -42,30 +42,30 @@ $(document).ready(function () {
         recall();
     });
     //Recall function
-function recall() {
-    var recallCity = JSON.parse(localStorage.getItem("cities"));
-    console.log(recallCity);
-    for (let i = 0; i < recallCity.length; i++) {
-       // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-     var cityBtn = $("<button>");
-     // Adding a class of movie to our button
-     cityBtn.addClass("cityClass");
-     // Adding a data-attribute
-     cityBtn.attr("data-name", JSON.parse(localStorage.getItem(cities)));
-     // Providing the initial button text
-     cityBtn.text(JSON.parse(localStorage.getItem(cities)));
-     // Adding the button to the HTML
-     $("#cityView").append(cityBtn);
-        
+    function recall() {
+        var recallCity = JSON.parse(localStorage.getItem("cities"));
+        console.log(recallCity);
+        for (let i = 0; i < recallCity.length; i++) {
+            // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+            var cityBtn = $("<button>");
+            // Adding a class of movie to our button
+            cityBtn.addClass("cityClass");
+            // Adding a data-attribute
+            cityBtn.attr("data-name", JSON.parse(localStorage.getItem(cities)));
+            // Providing the initial button text
+            cityBtn.text(JSON.parse(localStorage.getItem(cities)));
+            // Adding the button to the HTML
+            $("#cityView").append(cityBtn);
+
+        }
+
     }
-     
-}
 
 
 
 
     // calling the API for city current weather data
-    //var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=";
+    //var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid="+ myKey;
 
     // $.ajax({
     //     url: queryUrl,
