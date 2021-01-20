@@ -39,6 +39,7 @@ $(document).ready(function () {
         //Set up the local Storage
         localStorage.setItem("cities", JSON.stringify(cities));
         generatedBtn();
+        getResponse();
 
     });
     //Recall function
@@ -72,10 +73,10 @@ $(document).ready(function () {
     });
 
     //Listening for cityBtn 
-    $(document).click(function (event) {
+    // $(document).click(function (event) {
 
-        getResponse();
-    });
+    //     getResponse();
+    // });
 
 
     //Calling API through a function
@@ -95,49 +96,59 @@ $(document).ready(function () {
 
             //Response data as variable
             //console.log(response.name);
-           
-            //Convert the epoch to human-readable date
-            var myDate = new Date(response.dt);
-            console.log(myDate);
-            //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
+
+
             //Getting the log and lat
             var lon = response.coord.lon;
             console.log(lon);
             var lat = response.coord.lat;
             console.log(lat)
-            //Setting current weather
-            //Name and date and cloud
-            $(".cityName").text(response.name + " " + "(" + myDate + ")");
-            $(".cityName").addClass("name");
-            //Temperature
-            $(".temp").text("Temperature:" + " " + Math.round(response.main.temp) + "F");
-            $(".temp").addClass("weather");
-            //Humidity
-            $(".humidity").text("Humidity:" + " " + Math.round(response.main.humidity) + "%");
-            $(".humidity").addClass("weather");
-            //Wind Speed
-            $(".wind").text("Wind Speed:" + " " + Math.round(response.wind.speed) + " " + "MPH");
-            $(".wind").addClass("weather");
+
 
             // calling the API for city current weather data  
             var queryUrl1 = "https://api.openweathermap.org/data/2.5/onecall?&units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + myKey;
             $.ajax({
                 url: queryUrl1,
                 method: "GET"
-            }).then(function (response1) {
-                console.log(response1)
-                console.log(response1.current.uvi);
-            });
+            }).then(function (response) {
+                console.log(response)
+                console.log(response.current.uvi);
+                console.log(response.current.dt);
 
+                //Convert the epoch to human-readable date
+            var myDate = new Date(response.current.dt *1000);
+            console.log(myDate);
+            var month = myDate.getMonth() + 1;
+            console.log(month);
+            var day = myDate.getDay();
+            console.log(day);
+            var year = myDate.getFullYear();
+            console.log(year);
+            //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
+            //Setting current weather
+            //Name and date and cloud
+            $(".cityName").text(city + " " + "(" + month + "/" + day + "/" + year + ")");
+            $(".cityName").addClass("name");
+            //Temperature
+            $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + "F");
+            $(".temp").addClass("weather");
+            //Humidity
+            $(".humidity").text("Humidity:" + " " + Math.round(response.current.humidity) + "%");
+            $(".humidity").addClass("weather");
+            //Wind Speed
+            $(".wind").text("Wind Speed:" + " " + Math.round(response.wind_speed) + " " + "MPH");
+            $(".wind").addClass("weather");
             //UV 
-            $(".uvIndex").text("UV Index:" + " " + response1.current.uvi );
+            $(".uvIndex").text("UV Index:" + " " + response.current.uvi);
             $(".uvIndex").addClass("weather");
+            });
+            
         });
 
 
 
-        };
-       
+    };
+
 
 
 
