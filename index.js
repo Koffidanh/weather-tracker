@@ -43,7 +43,6 @@ $(document).ready(function () {
 
     });
     //Recall function
-
     var recallCity = JSON.parse(localStorage.getItem("cities"));
     //console.log(recallCity);
     for (let i = 0; i < recallCity.length; i++) {
@@ -116,37 +115,70 @@ $(document).ready(function () {
                 console.log(response.current.dt);
 
                 //Convert the epoch to human-readable date
-            var myDate = new Date(response.current.dt *1000);
-            console.log(myDate);
-            var month = myDate.getMonth() + 1;
-            console.log(month);
-            var day = myDate.getDate();
-            console.log(day);
-            var year = myDate.getFullYear();
-            console.log(year);
-            //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
-            //Setting current weather
-            //Name and date and cloud
-            $(".cityName").text(city + " " + "(" + month + "/" + day + "/" + year + ")");
-            $(".cityName").addClass("name");
-            //Weather icon
-            var iconId = response.current.weather[0].icon;
-            $(".currentIcon").attr("src", "http://openweathermap.org/img/wn/" + iconId + "@2x.png");
-            $(".currentIcon").attr("alt",response.current.weather[0].description );
-            //Temperature
-            $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + "F");
-            $(".temp").addClass("weather");
-            //Humidity
-            $(".humidity").text("Humidity:" + " " + Math.round(response.current.humidity) + "%");
-            $(".humidity").addClass("weather");
-            //Wind Speed
-            $(".wind").text("Wind Speed:" + " " + Math.round(response.wind_speed) + " " + "MPH");
-            $(".wind").addClass("weather");
-            //UV 
-            $(".uvIndex").text("UV Index:" + " " + response.current.uvi);
-            $(".uvIndex").addClass("weather");
+                var myDate = new Date(response.current.dt * 1000);
+                console.log(myDate);
+                var month = myDate.getMonth() + 1;
+                console.log(month);
+                var day = myDate.getDate();
+                console.log(day);
+                var year = myDate.getFullYear();
+                console.log(year);
+                //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
+                //Setting current weather
+                //Name and date and cloud
+                $(".cityName").text(city + " " + "(" + month + "/" + day + "/" + year + ")");
+                $(".cityName").addClass("name");
+                //Weather icon
+                var iconId = response.current.weather[0].icon;
+                $(".currentIcon").attr("src", "http://openweathermap.org/img/wn/" + iconId + "@2x.png");
+                $(".currentIcon").attr("alt", response.current.weather[0].description);
+                $(".currentIcon").attr("style", "height: 50px");
+                //Temperature
+                $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + "F");
+                $(".temp").addClass("weather");
+                //Humidity
+                $(".humidity").text("Humidity:" + " " + Math.round(response.current.humidity) + "%");
+                $(".humidity").addClass("weather");
+                //Wind Speed
+                $(".wind").text("Wind Speed:" + " " + Math.round(response.wind_speed) + " " + "MPH");
+                $(".wind").addClass("weather");
+                //UV 
+                $(".uvIndex").text("UV Index:" + " " + response.current.uvi);
+                $(".uvIndex").addClass("weather");
+
+                //Creating the 5 day forecast
+
+                for (let i = 0; i < 5; i++) {
+                    //Convert the epoch to human-readable date
+                    var myDateForecast = new Date(response.daily[i].dt * 1000);
+                    console.log(myDateForecast);
+                    var monthForecast = myDateForecast.getMonth() + 1;
+                    console.log(monthForecast);
+                    var dayForecast = myDateForecast.getDate();
+                    console.log(dayForecast);
+                    var yearForecast = myDate.getFullYear();
+                    console.log(yearForecast);
+                    //Adding class
+                    //Creating date in forecast
+                    $(`.forecastDay${i}`).text(monthForecast + "/" + dayForecast + "/" + yearForecast);
+                    $(`.forecastDay${i}`).addClass("forecastClass");
+                    //Creating icon in forecast
+                    var forecastIconId = response.daily[i].weather[0].icon;
+                    $(`.forecastIcon${i}`).attr("src", "http://openweathermap.org/img/wn/" + forecastIconId + "@2x.png");
+                    $(`.forecastIcon${i}`).attr("alt", response.daily[i].weather[0].description);
+                    $(`.forecastIcon${i}`).addClass("forecastClass");
+                    //Creating temperature in forecast
+                    $(`.forecastTemp${i}`).text("Temp:" + " " + Math.round(((response.daily[i].temp.max)+(response.daily[i].temp.min))/2) + "F")
+                    $(`.forecastTemp${i}`).addClass("forecastClass");
+                    //console.log("Temp:" + " " + Math.round(((response.daily[i].temp.max)+(response.daily[i].temp.min))/2) + "F")
+                     //Creating temperature in forecast
+                     $(`.forecastTemp${i}`).text("Humidity:" + " " + Math.round(response.daily[i].humidity));
+                     $(`.forecastTemp${i}`).addClass("forecastClass");
+                };
             });
-            
+
+
+
         });
 
 

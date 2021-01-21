@@ -31,8 +31,11 @@
                 <h4>Search for a city:</h4>
 
                 <input type="text" class="form-control" id="inputCity" placeholder="Enter City" name="city">
-                <button  id="search" type="button" class="btn btn-primary btn-sm" class="glyphicon glyphicon-search">Search</button>
-                <button  id="clear" type="button" class="btn btn-primary btn-sm" class="glyphicon glyphicon-search">Clear</button>
+                <button id="search" type="button" class="btn btn-primary btn-sm"
+                    class="glyphicon glyphicon-search">Search</button>
+                <button id="clear" type="button" class="btn btn-primary btn-sm"
+                    class="glyphicon glyphicon-search">Clear</button>
+                <div class="col-md-4  " class="cityClass" id="cityView"></div>
             </div>
             <div id="current" class="col-md-8 border border-dark rounded">
                 <div class="cityName"></div>
@@ -42,24 +45,64 @@
                 <div class="wind"></div>
                 <div class="uvIndex"></div>
             </div>
-            <div class="row">
-                <div  class="col-md-4 " class="cityClass" id="cityView"></div>
-                <div class="col-md-8"></div>                
-                
-                    
-                
-            </div>
-            <div class="row">
+        </div>
+
+
+
+
+            <div class="row" >
                 <div class="col-md-4"></div>
                 <div class="col-md-8">
-                    <div id="forecast"></div>
+                    <h3>5-Day Forecast:</h3>
                 </div>
-    
+                
+                   
+                        <div class="col-md-4"></div>
+
+                        <div class="col-md-1 " >
+                            <div class="forecastDay0"></div>
+                            <img class="forecastIcon0"></img>
+                            <div class="forecastTemp0"></div>
+                            <div class="forecastHumidity0"></div>
+                        </div>
+                        <div class="col-md-1 " >
+                            <div class="forecastDay1"></div>
+                            <img class="forecastIcon1"></img>
+                            <div class="forecastTemp1"></div>
+                            <div class="forecastHumidity1"></div>
+                        </div>
+                        <div class="col-md-1 " >
+                            <div class="forecastDay2"></div>
+                            <img class="forecastIcon2"></img>
+                            <div class="forecastTemp2"></div>
+                            <div class="forecastHumidity2"></div>
+                        </div>
+                        <div class="col-md-1 " >
+                            <div class="forecastDay3"></div>
+                            <img class="forecastIcon3"></img>
+                            <div class="forecastTemp3"></div>
+                            <div class="forecastHumidity3"></div>
+                        </div>
+                        <div class="col-md-1 " >
+                            <div class="forecastDay4"></div>
+                            <img class="forecastIcon4"></img>
+                            <div class="forecastTemp4"></div>
+                            <div class="forecastHumidity4"></div>
+                        </div>
+                   
+                
+
+
+
+
+
+
+
             </div>
-        </div>
-           
-           
-       
+        
+
+
+
     </div>
     <!-- Optional JavaScript -->
     <script type='text/javascript' src='config.js'></script>
