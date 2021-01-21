@@ -120,7 +120,7 @@ $(document).ready(function () {
             console.log(myDate);
             var month = myDate.getMonth() + 1;
             console.log(month);
-            var day = myDate.getDay();
+            var day = myDate.getDate();
             console.log(day);
             var year = myDate.getFullYear();
             console.log(year);
@@ -129,6 +129,10 @@ $(document).ready(function () {
             //Name and date and cloud
             $(".cityName").text(city + " " + "(" + month + "/" + day + "/" + year + ")");
             $(".cityName").addClass("name");
+            //Weather icon
+            var iconId = response.current.weather[0].icon;
+            $(".currentIcon").attr("src", "http://openweathermap.org/img/wn/" + iconId + "@2x.png");
+            $(".currentIcon").attr("alt",response.current.weather[0].description );
             //Temperature
             $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + "F");
             $(".temp").addClass("weather");
