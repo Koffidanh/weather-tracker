@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //adding the city name into an array
     var cities = [];
-    var myKey = config.My_KEY;
+
     //Function for dispaying city data
     function generatedBtn() {
         //Clear variable
@@ -35,9 +35,14 @@ $(document).ready(function () {
         //alert(city);
         //Adding the city to cities
         cities.push(city);
-        console.log(cities);
+        //console.log(cities);
         //Set up the local Storage
         localStorage.setItem("cities", JSON.stringify(cities));
+        //Alert if city is missing 
+        if (city === ("")) {
+            alert("Error: Missing City ")
+        }
+
         generatedBtn();
         getResponse();
 
@@ -58,6 +63,15 @@ $(document).ready(function () {
         // Adding the button to the HTML
         $("#cityView").append(cityBtn);
         //console.log(this);
+
+        //Listening for cityBtn 
+        $(cityBtn).on("click", function (event) {
+            event.preventDefault();
+            var city = $(this).text();
+            console.log(city)
+            //alert($(this).text());
+            getResponse(city);
+        });
     };
 
     //Setting up clear button
@@ -67,21 +81,19 @@ $(document).ready(function () {
         for (let i = 0; i < recallCity.length; i++) {
             //Clear display
             $("#cityView").text("");
-            $("#cityView").empty();
+            $("#current").empty();
+            $("#forecast").empty();
         }
     });
 
-    //Listening for cityBtn 
-    // $(document).click(function (event) {
-
-    //     getResponse();
-    // });
 
 
-    //Calling API through a function
-    function getResponse() {
+
+    // //Calling API through a function
+    function getResponse(city) {
         //Variable
         var city = $("#inputCity").val().trim();
+        var myKey = 'ff8b5bcffa7f8f9e07bd897f72bbf6a4';
         //console.log(city);
         //alert(city); 
         // calling the API for city current weather data   
@@ -91,7 +103,7 @@ $(document).ready(function () {
             url: queryUrl,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
 
             //Response data as variable
             //console.log(response.name);
@@ -99,9 +111,9 @@ $(document).ready(function () {
 
             //Getting the log and lat
             var lon = response.coord.lon;
-            console.log(lon);
+            // console.log(lon);
             var lat = response.coord.lat;
-            console.log(lat)
+            //console.log(lat)
 
 
             // calling the API for city current weather data  
@@ -110,19 +122,19 @@ $(document).ready(function () {
                 url: queryUrl1,
                 method: "GET"
             }).then(function (response) {
-                console.log(response)
-                console.log(response.current.uvi);
-                console.log(response.current.dt);
+                // console.log(response)
+                // console.log(response.current.uvi);
+                //console.log(response.current.dt);
 
                 //Convert the epoch to human-readable date
                 var myDate = new Date(response.current.dt * 1000);
-                console.log(myDate);
+                //console.log(myDate);
                 var month = myDate.getMonth() + 1;
-                console.log(month);
+                // console.log(month);
                 var day = myDate.getDate();
-                console.log(day);
+                //console.log(day);
                 var year = myDate.getFullYear();
-                console.log(year);
+                //console.log(year);
                 //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
                 //Setting current weather
                 //Name and date and cloud
@@ -134,30 +146,31 @@ $(document).ready(function () {
                 $(".currentIcon").attr("alt", response.current.weather[0].description);
                 $(".currentIcon").attr("style", "height: 50px");
                 //Temperature
-                $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + "F");
+                $(".temp").text("Temperature:" + " " + Math.round(response.current.temp) + " \u00B0F");
                 $(".temp").addClass("weather");
                 //Humidity
                 $(".humidity").text("Humidity:" + " " + Math.round(response.current.humidity) + "%");
                 $(".humidity").addClass("weather");
                 //Wind Speed
-                $(".wind").text("Wind Speed:" + " " + Math.round(response.wind_speed) + " " + "MPH");
+                $(".wind").text("Wind Speed:" + " " + Math.round(response.current.wind_speed) + " " + "MPH");
                 $(".wind").addClass("weather");
+                //console.log(Math.round(response.wind_speed));
                 //UV 
-                $(".uvIndex").text("UV Index:" + " " + response.current.uvi);
-                $(".uvIndex").addClass("weather");
+                $(".uvi").text("UV i:" + " " + response.current.uvi);
+                $(".uvi").addClass("weather");
 
                 //Creating the 5 day forecast
 
                 for (let i = 0; i < 5; i++) {
                     //Convert the epoch to human-readable date
                     var myDateForecast = new Date(response.daily[i].dt * 1000);
-                    console.log(myDateForecast);
+                    // console.log(myDateForecast);
                     var monthForecast = myDateForecast.getMonth() + 1;
-                    console.log(monthForecast);
+                    // console.log(monthForecast);
                     var dayForecast = myDateForecast.getDate();
-                    console.log(dayForecast);
+                    // console.log(dayForecast);
                     var yearForecast = myDate.getFullYear();
-                    console.log(yearForecast);
+                    //console.log(yearForecast);
                     //Adding class
                     //Creating date in forecast
                     $(`.forecastDay${i}`).text(monthForecast + "/" + dayForecast + "/" + yearForecast);
@@ -168,16 +181,18 @@ $(document).ready(function () {
                     $(`.forecastIcon${i}`).attr("alt", response.daily[i].weather[0].description);
                     $(`.forecastIcon${i}`).addClass("forecastClass");
                     //Creating temperature in forecast
-                    $(`.forecastTemp${i}`).text("Temp:" + " " + Math.round(((response.daily[i].temp.max)+(response.daily[i].temp.min))/2) + "F")
+                    $(`.forecastTemp${i}`).text("Temp:" + " " + Math.round(((response.daily[i].temp.max) + (response.daily[i].temp.min)) / 2) + " \u00B0F")
                     $(`.forecastTemp${i}`).addClass("forecastClass");
                     //console.log("Temp:" + " " + Math.round(((response.daily[i].temp.max)+(response.daily[i].temp.min))/2) + "F")
-                     //Creating temperature in forecast
-                     $(`.forecastTemp${i}`).text("Humidity:" + " " + Math.round(response.daily[i].humidity));
-                     $(`.forecastTemp${i}`).addClass("forecastClass");
+                    //Creating temperature in forecast
+                    $(`.forecastTemp${i}`).text("Humidity:" + " " + Math.round(response.daily[i].humidity));
+                    $(`.forecastTemp${i}`).addClass("forecastClass");
                 };
+
+
             });
 
-
+            
 
         });
 
