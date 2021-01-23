@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    //Variable
+    var city = $("input").val().trim();
     //adding the city name into an array
     var cities = [];
 
@@ -30,7 +32,7 @@ $(document).ready(function () {
         // We're optionally using a form so the user may hit Enter to search instead of clicking the button
         event.preventDefault();
         //Variable
-        var city = $("#inputCity").val().trim();
+        var city = $("input").val().trim();
         //console.log(city);
         //alert(city);
         //Adding the city to cities
@@ -40,16 +42,17 @@ $(document).ready(function () {
         localStorage.setItem("cities", JSON.stringify(cities));
         //Alert if city is missing 
         if (city === ("")) {
-            alert("Error: Missing City ")
+            alert("Error: Missing City name ")
         }
 
         generatedBtn();
-        getResponse();
+        getResponse(city);
 
     });
     //Recall function
     var recallCity = JSON.parse(localStorage.getItem("cities"));
     //console.log(recallCity);
+
     for (let i = 0; i < recallCity.length; i++) {
         // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
         var cityBtn = $("<button>");
@@ -67,10 +70,12 @@ $(document).ready(function () {
         //Listening for cityBtn 
         $(cityBtn).on("click", function (event) {
             event.preventDefault();
+
             var city = $(this).text();
-            console.log(city)
+            //console.log(city);
             //alert($(this).text());
             getResponse(city);
+
         });
     };
 
@@ -86,13 +91,9 @@ $(document).ready(function () {
         }
     });
 
-
-
-
     // //Calling API through a function
     function getResponse(city) {
         //Variable
-        var city = $("#inputCity").val().trim();
         var myKey = 'ff8b5bcffa7f8f9e07bd897f72bbf6a4';
         //console.log(city);
         //alert(city); 
@@ -108,13 +109,11 @@ $(document).ready(function () {
             //Response data as variable
             //console.log(response.name);
 
-
             //Getting the log and lat
             var lon = response.coord.lon;
             // console.log(lon);
             var lat = response.coord.lat;
             //console.log(lat)
-
 
             // calling the API for city current weather data  
             var queryUrl1 = "https://api.openweathermap.org/data/2.5/onecall?&units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + myKey;
@@ -122,12 +121,12 @@ $(document).ready(function () {
                 url: queryUrl1,
                 method: "GET"
             }).then(function (response) {
-                // console.log(response)
+                console.log(response)
                 // console.log(response.current.uvi);
                 //console.log(response.current.dt);
 
                 //Convert the epoch to human-readable date
-                var myDate = new Date(response.current.dt * 1000);
+                var myDate = (new Date(response.current.dt * 1000));
                 //console.log(myDate);
                 var month = myDate.getMonth() + 1;
                 // console.log(month);
@@ -135,6 +134,7 @@ $(document).ready(function () {
                 //console.log(day);
                 var year = myDate.getFullYear();
                 //console.log(year);
+
                 //document.write(myDate.toGMTString()+"<br>"+myDate.toLocaleString());
                 //Setting current weather
                 //Name and date and cloud
@@ -156,9 +156,20 @@ $(document).ready(function () {
                 $(".wind").addClass("weather");
                 //console.log(Math.round(response.wind_speed));
                 //UV 
-                $(".uvi").text("UV i:" + " " + response.current.uvi);
-                $(".uvi").addClass("weather");
+                $(".uvIndex").text("UV In:" + " " + response.current.uvi);
+                $(".uvIndex").addClass("weather");
+                //UV color
+                if ( response.current.uvi === 0 &&  response.current.uvi <= 2) {
+                    $(".uvIndex").addClass("green");
+                } else if (response.current.uvi === 3 &&  response.current.uvi <= 5) {
+                    $(".uvIndex").addClass("yellow");
+                }  else if (response.current.uvi === 6 &&  response.current.uvi <= 7) {
+                    $(".uvIndex").addClass("orange");
+                }  else if (response.current.uvi === 8 &&  response.current.uvi <= 10) {
+                    $(".uvIndex").addClass("red");
+                }
 
+                
                 //Creating the 5 day forecast
 
                 for (let i = 0; i < 5; i++) {
@@ -185,25 +196,14 @@ $(document).ready(function () {
                     $(`.forecastTemp${i}`).addClass("forecastClass");
                     //console.log("Temp:" + " " + Math.round(((response.daily[i].temp.max)+(response.daily[i].temp.min))/2) + "F")
                     //Creating temperature in forecast
-                    $(`.forecastTemp${i}`).text("Humidity:" + " " + Math.round(response.daily[i].humidity));
+                    $(`.forecastTemp${i}`).text("Humidity:" + " " + Math.round(response.daily[i].humidity) + "%");
                     $(`.forecastTemp${i}`).addClass("forecastClass");
                 };
 
-
             });
-
-            
 
         });
 
-
-
     };
-
-
-
-
-
-
 
 });
