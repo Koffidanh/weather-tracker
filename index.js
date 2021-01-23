@@ -66,7 +66,7 @@ $(document).ready(function () {
         // Adding the button to the HTML
         $("#cityView").append(cityBtn);
         //console.log(this);
-
+        
         //Listening for cityBtn 
         $(cityBtn).on("click", function (event) {
             event.preventDefault();
