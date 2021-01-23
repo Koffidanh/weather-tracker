@@ -1,3 +1,4 @@
+/* General */
 .header {
   text-align: center;
   padding-top: 0px;
@@ -15,10 +16,11 @@
   background-color: lightcyan;
   padding-top: 0px;
 }
-
+/* Input */
 #inputCity {
   width: 100% !important;
 }
+/* Create a class and ID */
 .cityClass {
   text-align: left;
   margin-top: 10px;
@@ -48,9 +50,10 @@
 
   font-size: 15px;
 }
+/* Create the UVI color class */
 .green {
   background-color: green;
- width: 100px;
+  width: 100px;
 }
 .yellow {
   background-color: yellow;
