@@ -121,7 +121,7 @@ $(document).ready(function () {
                 url: queryUrl1,
                 method: "GET"
             }).then(function (response) {
-                console.log(response)
+               // console.log(response)
                 // console.log(response.current.uvi);
                 //console.log(response.current.dt);
 
