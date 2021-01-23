@@ -39,15 +39,15 @@
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .forecastClass {
   background-color: mediumblue;
   color: white;
   padding-bottom: 1px;
-
+  text-align: center;
   font-weight: bolder;
   width: 100%;
-
   font-size: 15px;
 }
 /* Create the UVI color class */

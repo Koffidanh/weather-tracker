@@ -172,7 +172,7 @@ $(document).ready(function () {
                 
                 //Creating the 5 day forecast
 
-                for (let i = 0; i < 5; i++) {
+                for (let i = 1; i < 6; i++) {
                     //Convert the epoch to human-readable date
                     var myDateForecast = new Date(response.daily[i].dt * 1000);
                     // console.log(myDateForecast);
