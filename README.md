@@ -4,7 +4,7 @@ This Weather Tracker was designed to help the user to plan his/her trip accordin
 [Weather Tracker](https://koffidanh.github.io/weather-tracker/)
 
 ##  Search section
-The Search section is where the user enter the city he/she is looking for. This serach section has a "Search" button to search the city and a "Clear" button to clear the history of his/her search.
+The Search section is where the user enter the city he/she is looking for. This search section has a "Search" button to search the city and a "Clear" button to clear the history of his/her search.
 ![search section](https://github.com/Koffidanh/weather-tracker/blob/main/Assets/search.png)
 
 ## Current weather
@@ -12,7 +12,7 @@ The Current Weather shows the current weather at the city search. This Current W
 ![current weather](https://github.com/Koffidanh/weather-tracker/blob/main/Assets/curent.png)
 
 ## Day Forecast
-The Day Forecast shows the user the comming five days weather in the city search. This Day Forecast shows the user the date of the next five day comming , the weather picture of those five days, their humidity in percentage.
+The Day Forecast shows the user the coming five days weather in the city search. This Day Forecast shows the user the date of the next five day coming , the weather picture of those five days, their humidity in percentage.
 ![5 days forecast](https://github.com/Koffidanh/weather-tracker/blob/main/Assets/dayforecast.png)
 
 ### Weather Tracker

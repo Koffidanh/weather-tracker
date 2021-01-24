@@ -4,7 +4,7 @@ $(document).ready(function () {
     //adding the city name into an array
     var cities = [];
 
-    //Function for dispaying city data
+    //Function for displaying city data
     function generatedBtn() {
         //Clear variable
         $("#cityView").empty();
@@ -13,7 +13,7 @@ $(document).ready(function () {
         // Looping through the array of city
         for (var i = 0; i < cities.length; i++) {
             $("#cityView").attr("style", "visibility : show")
-            // Then dynamicaly generating buttons for each city in the array
+            // Then dynamically generating buttons for each city in the array
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var cityBtn = $("<button>");
             // Adding a class of movie to our button
@@ -79,6 +79,7 @@ $(document).ready(function () {
         });
     };
 
+    
     //Setting up clear button
     $("#clear").click(function (event) {
         // We're optionally using a form so the user may hit Enter to search instead of clicking the button
