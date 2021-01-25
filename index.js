@@ -24,6 +24,16 @@ $(document).ready(function () {
             cityBtn.text(cities[i]);
             // Adding the button to the HTML
             $("#cityView").append(cityBtn);
+            //Listening for cityBtn 
+            $(cityBtn).on("click", function (event) {
+                event.preventDefault();
+
+                var city = $(this).text();
+                //console.log(city);
+                //alert($(this).text());
+                getResponse(city);
+
+            });
         };
 
     };
@@ -66,7 +76,7 @@ $(document).ready(function () {
         // Adding the button to the HTML
         $("#cityView").append(cityBtn);
         //console.log(this);
-        
+
         //Listening for cityBtn 
         $(cityBtn).on("click", function (event) {
             event.preventDefault();
@@ -79,7 +89,7 @@ $(document).ready(function () {
         });
     };
 
-    
+
     //Setting up clear button
     $("#clear").click(function (event) {
         // We're optionally using a form so the user may hit Enter to search instead of clicking the button
@@ -122,7 +132,7 @@ $(document).ready(function () {
                 url: queryUrl1,
                 method: "GET"
             }).then(function (response) {
-               // console.log(response)
+                // console.log(response)
                 // console.log(response.current.uvi);
                 //console.log(response.current.dt);
 
@@ -160,17 +170,17 @@ $(document).ready(function () {
                 $(".uvIndex").text("UV In:" + " " + response.current.uvi);
                 $(".uvIndex").addClass("weather");
                 //UV color
-                if ( response.current.uvi === 0 &&  response.current.uvi <= 2) {
+                if (response.current.uvi === 0 && response.current.uvi <= 2) {
                     $(".uvIndex").addClass("green");
-                } else if (response.current.uvi === 3 &&  response.current.uvi <= 5) {
+                } else if (response.current.uvi === 3 && response.current.uvi <= 5) {
                     $(".uvIndex").addClass("yellow");
-                }  else if (response.current.uvi === 6 &&  response.current.uvi <= 7) {
+                } else if (response.current.uvi === 6 && response.current.uvi <= 7) {
                     $(".uvIndex").addClass("orange");
-                }  else if (response.current.uvi === 8 &&  response.current.uvi <= 10) {
+                } else if (response.current.uvi === 8 && response.current.uvi <= 10) {
                     $(".uvIndex").addClass("red");
                 }
 
-                
+
                 //Creating the 5 day forecast
 
                 for (let i = 1; i < 6; i++) {
