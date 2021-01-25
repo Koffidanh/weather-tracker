@@ -9,7 +9,7 @@ The Search section is where the user enter the city he/she is looking for. This 
 
 ## Current weather
 The Current Weather shows the current weather at the city search. This Current Weather shows the user the name of the city search with the current date , the current weather as a picture, the temperature in fahrenheit, the humidity in percentage, the wind speed in mile per hour and UV Index number and its hazards color.
-![current weather](https://github.com/Koffidanh/weather-tracker/blob/main/Assets/curent.png)
+![current weather](https://github.com/Koffidanh/weather-tracker/blob/main/Assets/current.png)
 
 ## Day Forecast
 The Day Forecast shows the user the coming five days weather in the city search. This Day Forecast shows the user the date of the next five day coming , the weather picture of those five days, their humidity in percentage.
