@@ -7,7 +7,7 @@ $(document).ready(function () {
     //Function for displaying city data
     function generatedBtn() {
         //Clear variable
-        $("#cityView").empty();
+         $("#cityView").empty();
 
         //console.log(this);
         // Looping through the array of city
