@@ -24,3 +24,14 @@ The Day Forecast shows the user the coming five days weather in the city search.
 * [Bootstrap](https://getbootstrap.com/)
 * [Stackoverflow](https://stackoverflow.com/)
 * [OpenWeather](https://openweathermap.org/)
+
+### Tools Used
+* Bootstrap
+* JQuery
+* CSS
+* OpenWeather API
+
+### Contact
+* Koffi Danhounsrou
+* email: koffi.danh@gmail.com
+* License by MIT
